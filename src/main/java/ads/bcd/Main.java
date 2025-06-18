@@ -1,14 +1,22 @@
 package ads.bcd;
+
 import ads.bcd.exp1.ExemploMuitoSimples;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import ads.bcd.exp2.PadroesDeProjeto;
+import java.io.IOException;
+import java.sql.SQLException;
+
 public class Main {
+
     private final String[] EXEMPLOS = {
             "\n..:: Pequenos exemplos com Java, SQLite e MySQL ::..\n",
             "1 - Exemplo 01",
+            "2 - Exemplo 02 - uso de padrões de projeto",
             "6 - Sair do programa"
     };
+
     private final String[] MENU_EX1 = {
             "\n...:: Exemplo com SQLite ::...\n",
             "1 - Cadastrar pessoa",
@@ -18,6 +26,7 @@ public class Main {
             "5 - Listar todas pessoas",
             "6 - Voltar ao menu anterior"
     };
+
     private Scanner teclado;
 
     public Main() {
@@ -32,6 +41,9 @@ public class Main {
             switch (opcao) {
                 case 1:
                     m.exemplo01();
+                    break;
+                case 2:
+                    m.exemplo02();
                     break;
             }
         } while (opcao != 6);
@@ -58,7 +70,7 @@ public class Main {
     private void exemplo01() throws Exception {
         int opcao;
         ExemploMuitoSimples app = new ExemploMuitoSimples();
-// Criar o banco de dados e tabela
+        // Criar o banco de dados e tabela
         app.criaBancoDeDados();
         try {
             do {
@@ -136,5 +148,10 @@ public class Main {
         } catch (InputMismatchException e) {
             System.err.println("ERRO: Dados fornecidos estão em um formato diferente do esperado.");
         }
+    }
+
+    private void exemplo02() throws SQLException {
+        PadroesDeProjeto app = new PadroesDeProjeto();
+        System.out.println(app.listarPessoas());
     }
 }
